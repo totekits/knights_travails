@@ -9,7 +9,7 @@ class Knight
 
   def find_possible_moves(position)
     possible_moves = []
-    mods = [[0,-1],[0,1],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1]]
+    mods = [[-1,2],[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1]]
 
     mods.each do |mod|
       x = position[0] + mod[0]
