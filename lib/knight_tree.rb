@@ -32,15 +32,15 @@ class KnightTree
     root
   end
 
+  def find_shortest_path(target, path = [])
+
+   
+
   def root_possible_moves
     @root.possible_moves
   end
 
   def root_pointers
     @root.pointers
-  end
-
-  def find_shortest_path(root, target, path = [])
-    
   end
 end

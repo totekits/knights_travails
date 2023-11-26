@@ -1,14 +1,29 @@
-require_relative 'lib/knight_tree'
+require_relative 'lib/knight'
 
+def build_tree(start, goal, visited = []) # return root node of the tree
+  return if start == goal
 
+  root = Knight.new(start)
+  visited << root.position
 
-tree = KnightTree.new([0,0], [7,7])
-puts "#{tree.root_possible_moves}"
-puts "#{tree.root_pointers}"
+  if root.moves.include?(goal) || visited.size == 8
+    root
+  else
+    pointers = []
+    root.moves.each do |move|
+      pointers << build_tree(move, goal, visited) unless visited.include?(move)
+    end
+    root.moves = pointers
+  end
 
+  root
+end
 
-# def knight_moves(start, finish) # take arr start, arr finish, return arr shortest path and depth
-#   # generate all possible paths from start to finish (use recursion), return a tree
-#   # find the shortest path (use BFS), return arr path
-#   # find its depth, return int depth
-# end
+def knight_moves(start, goal) # return arr of shortest path and depth
+# generate all possible paths from start to finish (use recursion), return a tree
+  build_tree(start, goal)
+# find the shortest path (use BFS), return arr path
+# find its depth, return int depth
+end
+
+p build_tree([0,0],[7,7])
