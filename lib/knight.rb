@@ -1,19 +1,25 @@
-class Knight
-  attr_accessor :position, :moves
+# frozen_string_literal: true
 
-  def initialize(position)
+# Knight class
+class Knight
+  attr_reader :position
+  attr_accessor :parent, :children
+
+  def initialize(position, parent = nil)
     @position = position
-    @moves = find_moves(position)
+    @parent = parent
+    @children = []
   end
 
-  def find_moves(position)
+  def moves
+    position = self.position
     moves = []
-    mods = [[-1,2],[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1]]
+    mods = [[-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [-1, -2], [-2, -1], [-2, 1]]
 
     mods.each do |mod|
       x = position[0] + mod[0]
       y = position[1] + mod[1]
-      moves << [x,y] if x.between?(0, 7) && y.between?(0, 7)
+      moves << [x, y] if x.between?(0, 7) && y.between?(0, 7)
     end
 
     moves
